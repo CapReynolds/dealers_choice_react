@@ -60,7 +60,7 @@ class App extends Component{
             </div>
             <div id="game-info">
                 {
-                    !!selectedGameId && <SingleGame selectedGameId = {selectedGameId} onGameIDChange ={onGameIDChange}/>
+                    !!selectedGameId && <SingleGame selectedGameId = {selectedGameId} onGameIDChange ={onGameIDChange} gamesArr={games}/>
                 }
           </div>
           </div>

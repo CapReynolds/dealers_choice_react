@@ -1,43 +1,46 @@
 import React from 'react';
 
 const DisplayControls = (props)=>{
-    var id = props.game.id;
+    var gamesArr = props.gamesArr;
+    var gameId = props.game.id;
     var removeGame = props.removeGame;
-    console.log(props.game.id);
-    var left = id +1; 
-    var right = id -1;;
-    
-    if(right === 0)
+    var left = 41; 
+    var right = 11;
+    var pos = gamesArr.map(function(game) { return game.id; }).indexOf(gameId);
+    var toleft = pos - 1; 
+    var toright = pos + 1;
+
+    if(gamesArr[toright] === undefined)
     {
         return(
         <div id = "controls">
              <div id = "box">
-                <div id = "arrow"><a href = {`#${left}`}> LEFT </a></div>
+                <div id = "arrow"><a href = {`#${gamesArr[toleft].id}`}> LEFT </a></div>
                 <div><img src="/assets/segaSwirl3.jpeg"width="30" height="30" /></div>
             </div>
-            <button onClick={()=>removeGame(id)} >Remove</button>
+            <button onClick={()=>removeGame(gameId)} >Remove</button>
         </div>);
     }
-    else if(left === 11)
+    else if(gamesArr[toleft] === undefined)
     {
         return(
             <div id = "controls">
                  <div id = "box">
                     <div><img src="/assets/segaSwirl3.jpeg"width="30" height="30" /></div>
-                    <div id = "arrow"><a href = {`#${right}`}> RIGHT </a></div>
+                    <div id = "arrow"><a href = {`#${gamesArr[toright].id}`}> RIGHT </a></div>
                 </div>
-                <button onClick={()=>removeGame(id)} >Remove</button>
+                <button onClick={()=>removeGame(gameId)} >Remove</button>
             </div>);
     }
     else{
         return(
             <div id = "controls">
                  <div id = "box">
-                    <div id = "arrow"><a href = {`#${left}`}> LEFT </a></div>
+                    <div id = "arrow"><a href = {`#${gamesArr[toleft].id}`}> LEFT </a></div>
                     <div><img src="/assets/segaSwirl3.jpeg"width="30" height="30" /></div>
-                    <div id = "arrow"><a href = {`#${right}`}> RIGHT </a></div>
+                    <div id = "arrow"><a href = {`#${gamesArr[toright].id}`}> RIGHT </a></div>
                 </div>
-                <button onClick={()=>removeGame(id)} >Remove</button>
+                <button onClick={()=>removeGame(gameId)} >Remove</button>
             </div>);
     }
     

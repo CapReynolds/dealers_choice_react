@@ -29,7 +29,6 @@ class SingleGame extends Component{
             developer: game[0].developer.name,
             publisher: game[0].publisher.name,
         });
-        //console.log(this.state.game.publisher.name  + 'in sg');
     }
 
     async removeGame(id){
@@ -37,6 +36,7 @@ class SingleGame extends Component{
         const num = (await axios.delete(`/api/games/${id}`)).data;
         this.props.onGameIDChange(newID);
         this.setState({
+            game: {},
             developer: '',
             publisher: '',
         })
@@ -46,6 +46,10 @@ class SingleGame extends Component{
     {
         const {game, publisher, developer} = this.state;
         const{removeGame} = this;
+        console.log(game);
+       if(game.gameArt === undefined)
+            return (<div></div>)
+        else {
         return(
            <div>
                {
@@ -59,11 +63,11 @@ class SingleGame extends Component{
                </div>
                }
                <div>
-                    <DisplayControls game ={this.state.game} removeGame={removeGame}/>
+                    <DisplayControls game ={this.state.game} removeGame={removeGame} gamesArr ={this.props.gamesArr}/>
                </div>
            </div>
         ); 
-            
+            }
     }
 }
 
